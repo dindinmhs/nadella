@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadella Web App</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Upload File</h1>
+    <form action="/files/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="text" name="description" placeholder="Deskripsi file" />
+        <button type="submit">Upload</button>
+    </form>
+
+
+    <h2>Uploaded Files</h2>
+    <ul>
+        <% if (files && files.length) { %>
+            <% files.forEach(file => { %>
+                <li>
+                    <a href="<%= file.url %>"><%= file.description %></a>
+                </li>
+            <% }); %>
+        <% } else { %>
+            <li>No files uploaded yet.</li>
+        <% } %>
+    </ul>
+</body>
+</html>
