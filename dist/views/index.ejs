@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nadella Web App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-md">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">Nadella</h1>
+      <span class="text-sm text-gray-500">File Upload System</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto mt-10 px-4">
+    <!-- Upload Form -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+      <h2 class="text-xl font-semibold mb-4">Upload File</h2>
+      <form action="/files/upload" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <input type="file" name="file" class="block w-full text-sm border border-gray-300 p-2 rounded" required/>
+        <input type="text" name="description" placeholder="Deskripsi file" class="block w-full border border-gray-300 p-2 rounded" required/>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+          Upload
+        </button>
+      </form>
+    </div>
+
+    <!-- Uploaded Files -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Uploaded Files</h2>
+      <ul class="space-y-2 list-disc pl-5">
+        <% if (files && files.length) { %>
+          <% files.forEach(file => { %>
+            <li>
+              <a href="<%= file.url %>" class="text-blue-600 hover:underline">
+                <%= file.description %>
+              </a>
+            </li>
+          <% }); %>
+        <% } else { %>
+          <li class="text-gray-500 italic">No files uploaded yet.</li>
+        <% } %>
+      </ul>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-10 text-center text-sm text-gray-400">
+    &copy; <%= new Date().getFullYear() %> Nadella Corporation. All rights reserved.
+  </footer>
+
+</body>
+</html>
