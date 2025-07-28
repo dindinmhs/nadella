@@ -19,7 +19,6 @@ npm-debug.log*
 Thumbs.db
 
 # TypeScript build output (kalau pakai tsc)
-dist/
 build/
 
 # Optional: ignore VS Code settings folder
